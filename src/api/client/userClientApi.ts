@@ -12,7 +12,7 @@ export const UserClientApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/setting/client-user?noPaginate=true`,
+            url: `/api/v1/setting/client-user?noPaginate=true`,
             method: "GET",
           }),
           providesTags: ["userClientList"],
@@ -22,7 +22,7 @@ export const UserClientApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/setting/client-user?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
+            url: `/api/v1/setting/client-user?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
               arg.page ? arg.page : 1
             }&search=${arg.search}`,
             method: "GET",
@@ -34,7 +34,7 @@ export const UserClientApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/client-registerApprove?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
+            url: `/api/v1/client-registerApprove?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
               arg.page ? arg.page : 1
             }&search=${arg.search}`,
             method: "GET",
@@ -46,7 +46,7 @@ export const UserClientApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/setting/client-user-simple?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
+            url: `/api/v1/setting/client-user-simple?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
               arg.page ? arg.page : 1
             }&search=${arg.search}`,
             method: "GET",
@@ -55,14 +55,14 @@ export const UserClientApi = baseApi
         }),
         getUserClient: build.query<ApiResponseWithPagination<IUserData>, { id: string }>({
           query: ({ id }) => ({
-            url: `/api/setting/client-user/${id}`,
+            url: `/api/v1/setting/client-user/${id}`,
             method: "GET",
           }),
           providesTags: ["singleClientUser"],
         }),
         createUserClient: build.mutation({
           query: (data: { name: string; email: string; role: string; sales_division: string[] }) => ({
-            url: "/api/setting/client-user",
+            url: "/api/v1/setting/client-user",
             method: "POST",
             data: {
               name: data.name,
@@ -87,7 +87,7 @@ export const UserClientApi = baseApi
           }
         >({
           query: ({ data, id }) => ({
-            url: `/api/setting/client-user/${id}`,
+            url: `/api/v1/setting/client-user/${id}`,
             method: "PATCH",
             data: {
               name: data.name,
@@ -104,7 +104,7 @@ export const UserClientApi = baseApi
           { id: string; data: { decision: string; reason: string } | any }
         >({
           query: ({ id, data }) => ({
-            url: `/api/client-registerApprove/${id}`,
+            url: `/api/v1/client-registerApprove/${id}`,
             method: "PATCH",
             data: {
               decision: data.decision,
@@ -115,14 +115,14 @@ export const UserClientApi = baseApi
         }),
         resetPasswordClient: build.mutation<ApiResponse<null>, { id: string | any }>({
           query: ({ id }) => ({
-            url: `/api/client-reset-password/${id}`,
+            url: `/api/v1/client-reset-password/${id}`,
             method: "PATCH",
           }),
           invalidatesTags: ["userClientList"],
         }),
         deleteUserClient: build.mutation<ApiResponse<null>, { id: string | any }>({
           query: ({ id }) => ({
-            url: `/api/setting/client-user/${id}`,
+            url: `/api/v1/setting/client-user/${id}`,
             method: "DELETE",
           }),
           invalidatesTags: ["userClientList"],

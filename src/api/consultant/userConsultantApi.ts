@@ -12,7 +12,7 @@ export const UserConsultantApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/setting/consultant-user?noPaginate=true`,
+            url: `/api/v1/setting/consultant-user?noPaginate=true`,
             method: "GET",
           }),
           providesTags: ["userConsultantList"],
@@ -22,7 +22,7 @@ export const UserConsultantApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/setting/consultant-user?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
+            url: `/api/v1/setting/consultant-user?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
               arg.page ? arg.page : 1
             }&search=${arg.search}`,
             method: "GET",
@@ -34,7 +34,7 @@ export const UserConsultantApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/consultant-registerApprove?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
+            url: `/api/v1/consultant-registerApprove?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
               arg.page ? arg.page : 1
             }&search=${arg.search}`,
             method: "GET",
@@ -46,7 +46,7 @@ export const UserConsultantApi = baseApi
           { page?: number; rowPerPage?: number; search?: string }
         >({
           query: (arg) => ({
-            url: `/api/setting/consultant-user-simple?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
+            url: `/api/v1/setting/consultant-user-simple?paginate=${arg.rowPerPage ? arg.rowPerPage : 25}&page=${
               arg.page ? arg.page : 1
             }&search=${arg.search}`,
             method: "GET",
@@ -55,14 +55,14 @@ export const UserConsultantApi = baseApi
         }),
         getUserConsultant: build.query<ApiResponseWithPagination<IUserData>, { id: string }>({
           query: ({ id }) => ({
-            url: `/api/setting/consultant-user/${id}`,
+            url: `/api/v1/setting/consultant-user/${id}`,
             method: "GET",
           }),
           providesTags: ["singleConsultantUser"],
         }),
         createUserConsultant: build.mutation({
           query: (data: { name: string; email: string; role: string; sales_division: string[] }) => ({
-            url: "/api/setting/consultant-user",
+            url: "/api/v1/setting/consultant-user",
             method: "POST",
             data: {
               name: data.name,
@@ -87,7 +87,7 @@ export const UserConsultantApi = baseApi
           }
         >({
           query: ({ data, id }) => ({
-            url: `/api/setting/consultant-user/${id}`,
+            url: `/api/v1/setting/consultant-user/${id}`,
             method: "PATCH",
             data: {
               name: data.name,
@@ -104,7 +104,7 @@ export const UserConsultantApi = baseApi
           { id: string; data: { decision: string; reason: string } | any }
         >({
           query: ({ id, data }) => ({
-            url: `/api/consultant-registerApprove/${id}`,
+            url: `/api/v1/consultant-registerApprove/${id}`,
             method: "PATCH",
             data: {
               decision: data.decision,
@@ -115,14 +115,14 @@ export const UserConsultantApi = baseApi
         }),
         resetPasswordConsultant: build.mutation<ApiResponse<null>, { id: string | any }>({
           query: ({ id }) => ({
-            url: `/api/consultant-reset-password/${id}`,
+            url: `/api/v1/consultant-reset-password/${id}`,
             method: "PATCH",
           }),
           invalidatesTags: ["userConsultantList"],
         }),
         deleteUserConsultant: build.mutation<ApiResponse<null>, { id: string | any }>({
           query: ({ id }) => ({
-            url: `/api/setting/consultant-user/${id}`,
+            url: `/api/v1/setting/consultant-user/${id}`,
             method: "DELETE",
           }),
           invalidatesTags: ["userConsultantList"],

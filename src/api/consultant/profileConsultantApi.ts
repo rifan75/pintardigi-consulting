@@ -18,7 +18,7 @@ export const profileConsultantApi = baseApi.enhanceEndpoints({ addTagTypes: ["co
     return {
       changeConsultantPassword: builder.mutation({
         query: (data: ChangePasswordRequestBody) => ({
-          url: "/api/consultant-change-password",
+          url: "/api/v1/consultant-change-password",
           method: "POST",
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -30,7 +30,7 @@ export const profileConsultantApi = baseApi.enhanceEndpoints({ addTagTypes: ["co
       }),
       changeConsultantData: builder.mutation({
         query: (data: ChangeDataRequestBody) => ({
-          url: "/api/consultant-change-data",
+          url: "/api/v1/consultant-change-data",
           method: "PATCH",
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -42,7 +42,7 @@ export const profileConsultantApi = baseApi.enhanceEndpoints({ addTagTypes: ["co
       }),
       avatarConsultant: builder.mutation<{ message: string }, FormData>({
         query: (data) => ({
-          url: "/api/consultant-avatar",
+          url: "/api/v1/consultant-avatar",
           method: "POST",
           data: data,
         }),
@@ -50,7 +50,7 @@ export const profileConsultantApi = baseApi.enhanceEndpoints({ addTagTypes: ["co
       }),
       getMyProfileConsultant: builder.query<ApiResponse<IUserData>, any>({
         query: () => ({
-          url: `/api/consultant-my-profile`,
+          url: `/api/v1/consultant-my-profile`,
           method: "GET",
         }),
         providesTags: ["consultantprofile"],
